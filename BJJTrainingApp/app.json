@@ -1,0 +1,36 @@
+{
+  "expo": {
+    "name": "BJJTrainingApp",
+    "slug": "BJJTrainingApp",
+    "version": "1.0.2",
+    "orientation": "portrait",
+    "icon": "./assets/Aegis_Clear_Logo.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/Aegis_Clear_Logo.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.cdb8987.BJJTrainingApp"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "9be25e8c-5ec6-46b6-a9d3-b0ced29e0dfe"
+      }
+    }
+  }
+}
