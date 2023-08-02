@@ -1,6 +1,6 @@
 import { Text, View, Linking } from 'react-native';
 
-
+//test note
 
 import Emoji from 'react-native-emoji';
 
