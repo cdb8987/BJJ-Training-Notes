@@ -2,7 +2,7 @@ import React from 'react'
 import { ImageBackground, StyleSheet, Text, View, ScrollView } from 'react-native';
 import Datatable from './DataTable.js';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import { Divider } from 'react-native-paper'
 import Rollrecord from './RollRecord.js';
 import Drillrecord from './DrillRecord.js'
@@ -49,7 +49,7 @@ export default  function DashBoard(props){
 
   const image = require("../assets/Aegis_Clear_Logo.png")
 
-
+  
 
   const aggregateFilteredRecords= async (positionSelection, techniqueSelection)=>{
     
@@ -62,7 +62,14 @@ export default  function DashBoard(props){
       try{
         
         const rollingHistory = await JSON.parse(await AsyncStorage.getItem('rollingHistory'))
-        if(positionSelection !== '' && techniqueSelection == ''){
+        
+        if(positionSelection == '' && techniqueSelection == ''){
+          for(let record of rollingHistory.data){
+            recordsArray.push(record)   
+          }
+        }
+        
+        else if(positionSelection !== '' && techniqueSelection == ''){
             for(let record of rollingHistory.data){
                 if(record.position == positionSelection){
                     recordsArray.push(record)
@@ -102,7 +109,13 @@ export default  function DashBoard(props){
         
         const drillingHistory = await JSON.parse(await AsyncStorage.getItem('drillingHistory'))
         
-        if(positionSelection !== '' && techniqueSelection == ''){
+        if(positionSelection == '' && techniqueSelection == ''){
+          for(let record of drillingHistory.data){
+            recordsArray.push(record)   
+          }
+        }
+        
+        else if(positionSelection !== '' && techniqueSelection == ''){
             for(let record of drillingHistory.data){
                 if(record.position == positionSelection){
                     recordsArray.push(record)
@@ -143,7 +156,14 @@ export default  function DashBoard(props){
         
         const videoHistory = await JSON.parse(await AsyncStorage.getItem('videoHistory'))
         
-        if(positionSelection !== '' && techniqueSelection == ''){
+        
+        if(positionSelection == '' && techniqueSelection == ''){
+          for(let record of videoHistory.data){
+            recordsArray.push(record)   
+          }
+        }
+        
+        else if(positionSelection !== '' && techniqueSelection == ''){
             for(let record of videoHistory.data){
                 if(record.position == positionSelection){
                     recordsArray.push(record)
@@ -233,13 +253,12 @@ export default  function DashBoard(props){
 
     
       setFilteredRecords(newJSXArray.reverse())
-    
-    
-    
-      
-    
+       
     
 }
+
+useEffect(async()=>{aggregateFilteredRecords(positionSelection, techniqueSelection )}, [])
+
 
 
 
