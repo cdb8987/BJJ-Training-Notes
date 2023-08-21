@@ -9,6 +9,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import Statspage from './Components/StatsPage';
 import Logvideo from './Components/LogVideo';
 
+// gh issue create --title "Blank" --body "Blank " --label 'enhancement'
+
 
 export default function App() {
   let startingPositions = ["Guard", "Side Control", "Mount", "Back Control"]
