@@ -257,7 +257,16 @@ export default  function DashBoard(props){
     
 }
 
-useEffect(async()=>{aggregateFilteredRecords(positionSelection, techniqueSelection )}, [])
+
+  useEffect(async()=>{
+    try{
+      aggregateFilteredRecords(positionSelection, techniqueSelection )
+    }
+    catch(error){console.log('useEffect didnt return anything')}
+    
+    }, [])
+
+
 
 
 
