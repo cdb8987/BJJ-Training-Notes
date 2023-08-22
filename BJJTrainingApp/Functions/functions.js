@@ -76,9 +76,6 @@ export const aggregateFilteredRecords = async function(positionSelection, techni
       const recordsArray = []
       
       try{
-      
-      
-        
         const drillingHistory = await JSON.parse(await AsyncStorage.getItem('drillingHistory'))
         
         if(positionSelection == '' && techniqueSelection == ''){
@@ -159,7 +156,7 @@ export const aggregateFilteredRecords = async function(positionSelection, techni
                 }
             }
         }
-        // console.log('retrieveFilteredDrillRecords contains: ', recordsArray)
+        console.log('retrieveFilteredDrillRecords contains: ', recordsArray)
         
 
       }
@@ -171,18 +168,35 @@ export const aggregateFilteredRecords = async function(positionSelection, techni
 
 
     
-    const retrieveFilteredLocalVideoRecords = async ()=>{return []}
+    const retrieveFilteredLocalVideoRecords = async ()=>{
+        try{ await getVideofromCamera() }
+        catch(error){console.log('RetrievefilteredVIDEORecords FAILED' + error)}
+        return []}
+    
 
+    let FilteredRollRecords, FilteredDrillRecords, FilteredExternalVideoRecords, FilteredLocalVideoRecords;
 
+    try{FilteredRollRecords = await retrieveFilteredRollRecords(positionSelection, techniqueSelection)
+    console.log('FilteredRollRecords:',  FilteredRollRecords) }
+    catch(error){console.log(error)}
 
-    const FilteredRollRecords = await retrieveFilteredRollRecords(positionSelection, techniqueSelection)
-    console.log('FilteredRollRecords:',  FilteredRollRecords)
-    const FilteredDrillRecords = await retrieveFilteredDrillRecords(positionSelection, techniqueSelection)
-    console.log('FilteredDrillRecords:',  FilteredDrillRecords)
-    const FilteredExternalVideoRecords = await retrieveFilteredExternalVideoRecords(positionSelection, techniqueSelection)
-    console.log('FilteredExternalVideoRecords:',  FilteredExternalVideoRecords)
-    const FilteredLocalVideoRecords = await retrieveFilteredLocalVideoRecords(positionSelection, techniqueSelection)
-    console.log('FilteredLocalVideoRecords:',  FilteredLocalVideoRecords)
+    try{FilteredDrillRecords = await retrieveFilteredDrillRecords(positionSelection, techniqueSelection)
+    console.log('FilteredDrillRecords:',  FilteredDrillRecords) }
+    catch(error){console.log(error)}
+
+    try{FilteredExternalVideoRecords = await retrieveFilteredExternalVideoRecords(positionSelection, techniqueSelection)
+    console.log('FilteredExternalVideoRecords:',  FilteredExternalVideoRecords) }
+    catch(error){console.log(error)}
+    
+    try{FilteredLocalVideoRecords = await retrieveFilteredLocalVideoRecords(positionSelection, techniqueSelection)
+    console.log('FilteredLocalVideoRecords:',  FilteredLocalVideoRecords)}
+    catch(error){console.log(error)}
+    
+
+    
+    
+    
+    
 
 
     const newJSXArray = []
@@ -223,7 +237,7 @@ export const aggregateFilteredRecords = async function(positionSelection, techni
     }
 
 
-    
+      console.log('MADE IT DOWN TO SETFILTEREDRECORDS')
       setFilteredRecords(newJSXArray.reverse())
        
     

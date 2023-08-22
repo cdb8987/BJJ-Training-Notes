@@ -34,7 +34,7 @@ import Notesinput from './NotesInput';
   
 
   export default function Logdrilling(props){
-    const {techniques, positions, setLogDrillingVisible, isLoading}= props
+    const {techniques, positions, setLogDrillingVisible}= props
     const positionsObjectList = positions.map((x)=> {return {label: x, value: x }})
     const techniquesObjectList = techniques.map((x)=> {return {label: x, value: x }})
 

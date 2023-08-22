@@ -7,7 +7,7 @@ import Piechart from './PieChart.js';
 
 
 export default function Statspage(props){
-    const {techniques, positions, isLoading} = props
+    const {techniques, positions} = props
     
 
 

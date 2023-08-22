@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet} from 'react-native';
+import { StyleSheet, SafeAreaView} from 'react-native';
 import DashBoard from './Components/Dashboard';
 import Logdrilling from './Components/LogDrilling';
 import Logrolling from './Components/LogRolling' ;
@@ -37,21 +37,23 @@ export default function App() {
   
   //   Selects screen
   let selectedScreen;
-  if(dashboardVisible){selectedScreen = (<DashBoard techniques={techniques} positions={positions} isLoading={isLoading} setPositions={setPositions} setTechniques={setTechniques}/>)}
-  else if(logDrillingVisible){selectedScreen = (<Logdrilling techniques={techniques} positions={positions} isLoading={isLoading} setLogDrillingVisible={setLogDrillingVisible}/>)}
-  else if(logRollingVisible){selectedScreen = (<Logrolling techniques={techniques} positions={positions} isLoading={isLoading} setLogRollingVisible={setLogRollingVisible}/>)}
-  else if(statsPageVisible){selectedScreen = (<Statspage techniques={techniques} positions={positions} isLoading={isLoading} />)}
-  else if(videoPageVisible){selectedScreen = (<Logvideo techniques={techniques} positions={positions} isLoading={isLoading} setVideoPageVisible={setVideoPageVisible}/>)}
+  if(dashboardVisible){selectedScreen = (<DashBoard techniques={techniques} positions={positions}  setPositions={setPositions} setTechniques={setTechniques}/>)}
+  else if(logDrillingVisible){selectedScreen = (<Logdrilling techniques={techniques} positions={positions}  setLogDrillingVisible={setLogDrillingVisible}/>)}
+  else if(logRollingVisible){selectedScreen = (<Logrolling techniques={techniques} positions={positions}  setLogRollingVisible={setLogRollingVisible}/>)}
+  else if(statsPageVisible){selectedScreen = (<Statspage techniques={techniques} positions={positions}  />)}
+  else if(videoPageVisible){selectedScreen = (<Logvideo techniques={techniques} positions={positions}  setVideoPageVisible={setVideoPageVisible}/>)}
 
   // console.log(selectedScreen)
   return (  
-    <>
+    <SafeAreaView style={styles.container}>
      {selectedScreen}
      <Navbar setDashboardVisible={setDashboardVisible} setLogDrillingVisible={setLogDrillingVisible} setLogRollingVisible={setLogRollingVisible} setstatsPageVisible={setstatsPageVisible} setVideoPageVisible={setVideoPageVisible}/>
-     </>
+    </SafeAreaView>
   )
   }
   const styles= StyleSheet.create({
+    
+    
     container:{
       flex: 1, 
       width: "100%",
