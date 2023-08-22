@@ -8,13 +8,13 @@ import { useState, useEffect } from 'react';
 import Statspage from './Components/StatsPage';
 import Logvideo from './Components/LogVideo';
 import { loadPositionsAndTechniques } from './Functions/functions'
+import {startingPositions, startingTechniques } from './Functions/functions'
 
 // gh issue create --title "Blank" --body "Blank " --label 'enhancement'
 
 
 export default function App() {
-  let startingPositions = ["Guard", "Side Control", "Mount", "Back Control"]
-  let startingTechniques = ['Armbar', 'Kimura', 'Lapel Choke', 'Triangle Choke', 'Americana', 'Head and Arm Choke', 'Rear Naked Choke', 'Escape', 'Sweep']
+  
   
   useEffect(()=>{
     async function getData(){

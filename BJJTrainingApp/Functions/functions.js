@@ -3,6 +3,11 @@ import Rollrecord from '../Components/RollRecord.js';
 import Drillrecord from '../Components/DrillRecord.js';
 import ExternalVideoRecordandroid from '../Components/ExternalVideoRecordAndroid.js';
 
+export let startingPositions = ["Guard", "Side Control", "Mount", "Back Control"]
+export let startingTechniques = ['Armbar', 'Kimura', 'Lapel Choke', 'Triangle Choke', 'Americana', 'Head and Arm Choke', 'Rear Naked Choke', 'Escape', 'Sweep']
+
+
+
 
 export const loadPositionsAndTechniques = async function(setPositions, setTechniques){
     if(await AsyncStorage.getItem('startingPositions')){
