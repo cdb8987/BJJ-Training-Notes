@@ -8,6 +8,7 @@ import { useState, useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Statspage from './Components/StatsPage';
 import Logvideo from './Components/LogVideo';
+// import loadPositionsAndTechniques from './Functions/functions'
 
 // gh issue create --title "Blank" --body "Blank " --label 'enhancement'
 
@@ -30,12 +31,24 @@ export default function App() {
       setTechniques(startingTechniques)
     }
     else{
-      AsyncStorage.setItem('startingTechniques', JSON.stringyf(startingTechniques) )
+      AsyncStorage.setItem('startingTechniques', JSON.stringify(startingTechniques) )
       
     }
   }
   
-  useEffect(()=>{loadPositionsAndTechniques()}, [])
+  useEffect(()=>{
+    async function getData(){
+      const res = await loadPositionsAndTechniques()
+    }; 
+    getData(); 
+  }, [])
+
+ 
+
+
+
+
+
   
  
  
