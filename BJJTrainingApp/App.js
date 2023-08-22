@@ -16,26 +16,6 @@ import loadPositionsAndTechniques from './Functions/functions'
 export default function App() {
   let startingPositions = ["Guard", "Side Control", "Mount", "Back Control"]
   let startingTechniques = ['Armbar', 'Kimura', 'Lapel Choke', 'Triangle Choke', 'Americana', 'Head and Arm Choke', 'Rear Naked Choke', 'Escape', 'Sweep']
-
-  
-  const loadPositionsAndTechniques = async function(){
-    if(await AsyncStorage.getItem('startingPositions')){
-      startingPositions = await JSON.parse(await AsyncStorage.getItem('startingPositions'))
-      setPositions(startingPositions)
-    }
-    else{
-      AsyncStorage.setItem('startingPositions', JSON.stringify(startingPositions) )
-    }
-    if(await AsyncStorage.getItem('startingTechniques')){
-      startingTechniques = await JSON.parse(await AsyncStorage.getItem('startingTechniques'))
-      setTechniques(startingTechniques)
-    }
-    else{
-      AsyncStorage.setItem('startingTechniques', JSON.stringify(startingTechniques) )
-      
-    }
-  }
-  
   
   useEffect(()=>{
     async function getData(){
@@ -44,26 +24,8 @@ export default function App() {
     getData(); 
   }, [])
 
- 
-
-
-
-
-
-  
- 
- 
-
   const [positions, setPositions] = useState(startingPositions)
   const [techniques, setTechniques] = useState(startingTechniques)
-
-  
-
-  
-
-
-  
-
 
   // Set screens to visible or hidden for navigation
   const [dashboardVisible, setDashboardVisible] = useState(true)
@@ -71,13 +33,6 @@ export default function App() {
   const [logRollingVisible, setLogRollingVisible] = useState(false)
   const [statsPageVisible, setstatsPageVisible] = useState(false)
   const [videoPageVisible, setVideoPageVisible] = useState(false)
-
-  
-
-
-
-
-
   const [isLoading, setIsLoading] = useState(true)
   
   
@@ -90,24 +45,13 @@ export default function App() {
   else if(videoPageVisible){selectedScreen = (<Logvideo techniques={techniques} positions={positions} isLoading={isLoading} setVideoPageVisible={setVideoPageVisible}/>)}
 
   // console.log(selectedScreen)
-  
-  
-  return (
-    
+  return (  
     <>
-    
      {selectedScreen}
-     
-    
      <Navbar setDashboardVisible={setDashboardVisible} setLogDrillingVisible={setLogDrillingVisible} setLogRollingVisible={setLogRollingVisible} setstatsPageVisible={setstatsPageVisible} setVideoPageVisible={setVideoPageVisible}/>
-    
      </>
-     
-    
-    
   )
   }
-
   const styles= StyleSheet.create({
     container:{
       flex: 1, 
