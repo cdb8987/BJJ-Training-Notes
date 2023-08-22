@@ -38,7 +38,7 @@ export default  function DashBoard(props){
   useEffect(()=>{
     async function getRecords(){
     try{
-      aggregateFilteredRecords(positionSelection, techniqueSelection, setPositions, setTechniques,FilteredRecords, setFilteredRecords )
+      aggregateFilteredRecords(positionSelection, techniqueSelection, setFilteredRecords )
     }
     catch(error){console.log('useEffect didnt return anything')}
   }
@@ -54,7 +54,7 @@ export default  function DashBoard(props){
               <View > 
                 <View><Text style={styles.TrainingPlanheader}>Training Plan</Text>
                 </View>
-                <Datatable techniques={techniques} positions={positions} setPositions={setPositions} setTechniques={setTechniques} positionSelection={positionSelection} setPositionSelection={setPositionSelection} techniqueSelection={techniqueSelection} setTechniqueSelection={setTechniqueSelection} aggregateFilteredRecords={aggregateFilteredRecords} seteditPositionsToggled={seteditPositionsToggled} seteditTechniquesToggled={seteditTechniquesToggled}/>
+                <Datatable techniques={techniques} positions={positions} setPositions={setPositions} setTechniques={setTechniques} positionSelection={positionSelection} setPositionSelection={setPositionSelection} techniqueSelection={techniqueSelection} setTechniqueSelection={setTechniqueSelection} aggregateFilteredRecords={aggregateFilteredRecords} seteditPositionsToggled={seteditPositionsToggled} seteditTechniquesToggled={seteditTechniquesToggled} setFilteredRecords={setFilteredRecords}/>
               </View>
             </ScrollView>
           </View>

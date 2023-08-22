@@ -23,7 +23,7 @@ export const loadPositionsAndTechniques = async function(setPositions, setTechni
   }
 
 
-export const aggregateFilteredRecords = async function(positionSelection, techniqueSelection, setPositions, setTechniques, FilteredRecords, setFilteredRecords){
+export const aggregateFilteredRecords = async function(positionSelection, techniqueSelection,  setFilteredRecords){
     
     // JSX Elements from all four functions below will be added to this array.  It will be sorted by createdAt, and will render JSX elements based on record type and ultimately be returned to the dashboard
     
@@ -235,10 +235,15 @@ export const aggregateFilteredRecords = async function(positionSelection, techni
       }
       else{newJSXArray.push(<View key={record.createdAt}><Text>{JSON.stringify(record)}</Text></View>)}
     }
-
-
-      console.log('MADE IT DOWN TO SETFILTEREDRECORDS')
       setFilteredRecords(newJSXArray.reverse())
+      
+      
+
+
+      
+
+      
+
        
     
 }

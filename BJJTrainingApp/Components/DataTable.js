@@ -4,7 +4,7 @@ import { DataTable } from 'react-native-paper';
 
   
 const Datatable = (props) => {
-  const {positions, techniques, setPositions, setTechniques, positionSelection, setPositionSelection, techniqueSelection, setTechniqueSelection, aggregateFilteredRecords, seteditPositionsToggled, seteditTechniquesToggled } = props
+  const {positions, techniques, setPositions, setTechniques, positionSelection, setPositionSelection, techniqueSelection, setTechniqueSelection, aggregateFilteredRecords, seteditPositionsToggled, seteditTechniquesToggled, setFilteredRecords } = props
   
       let positionCells = positions.sort()
       positionCells = positions.map((x, i)=>{
@@ -15,11 +15,8 @@ const Datatable = (props) => {
         style={styles[isSelected]} 
         onLongPress={()=>{console.log('LONG PRESS HELD FOR', x), handleSelect(positionSelection, setPositionSelection) }}
         onPress={()=>{
-          if(x==positionSelection){setPositionSelection(''); aggregateFilteredRecords('', techniqueSelection)}
-          else{setPositionSelection(x); aggregateFilteredRecords(x, techniqueSelection)}
-          
-           
-          
+          if(x==positionSelection){setPositionSelection(''); aggregateFilteredRecords('', techniqueSelection, setFilteredRecords)}
+          else{setPositionSelection(x); aggregateFilteredRecords(x, techniqueSelection, setFilteredRecords)}
           
           // (x==positionSelection)? setPositionSelection('') : setPositionSelection(x); 
           // aggregateFilteredRecords(positionSelection, techniqueSelection)
@@ -50,8 +47,8 @@ const Datatable = (props) => {
         style={styles[isSelected]}
         onLongPress={()=>{console.log('LONG PRESS HELD FOR', x) }}
         onPress={()=>{
-          if(x==techniqueSelection){setTechniqueSelection(''); aggregateFilteredRecords(positionSelection, '')}
-          else{setTechniqueSelection(x); aggregateFilteredRecords(positionSelection, x)}
+          if(x==techniqueSelection){setTechniqueSelection(''); aggregateFilteredRecords(positionSelection, '', setFilteredRecords)}
+          else{setTechniqueSelection(x); aggregateFilteredRecords(positionSelection, x, setFilteredRecords)}
           
           
           
