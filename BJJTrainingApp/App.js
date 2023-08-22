@@ -8,7 +8,7 @@ import { useState, useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Statspage from './Components/StatsPage';
 import Logvideo from './Components/LogVideo';
-// import loadPositionsAndTechniques from './Functions/functions'
+import loadPositionsAndTechniques from './Functions/functions'
 
 // gh issue create --title "Blank" --body "Blank " --label 'enhancement'
 
@@ -35,6 +35,7 @@ export default function App() {
       
     }
   }
+  
   
   useEffect(()=>{
     async function getData(){
