@@ -20,158 +20,159 @@ export const loadPositionsAndTechniques = async function(){
   }
 
 
+  
+
+
+
+
+
+
 export const aggregateFilteredRecords= async (positionSelection, techniqueSelection)=>{
-    
-    // JSX Elements from all four functions below will be added to this array.  It will be sorted by createdAt, and will render JSX elements based on record type and ultimately be returned to the dashboard
-    
-//
 
     const retrieveFilteredRollRecords = async (positionSelection, techniqueSelection)=>{
-      const recordsArray = []
-      try{
-        
-        const rollingHistory = await JSON.parse(await AsyncStorage.getItem('rollingHistory'))
-        
-        if(positionSelection == '' && techniqueSelection == ''){
-          for(let record of rollingHistory.data){
-            recordsArray.push(record)   
+        const recordsArray = []
+        try{
+          
+          const rollingHistory = await JSON.parse(await AsyncStorage.getItem('rollingHistory'))
+          
+          if(positionSelection == '' && techniqueSelection == ''){
+            for(let record of rollingHistory.data){
+              recordsArray.push(record)   
+            }
           }
+          
+          else if(positionSelection !== '' && techniqueSelection == ''){
+              for(let record of rollingHistory.data){
+                  if(record.position == positionSelection){
+                      recordsArray.push(record)
+                  }
+              }
+          }
+          else if(techniqueSelection !== '' && positionSelection == ''){
+              for(let record of rollingHistory.data){
+                  if(record.technique == techniqueSelection){
+                      recordsArray.push(record)
+                  }
+              }
+          }
+          else if(techniqueSelection !== '' && positionSelection !== ''){
+              for(let record of rollingHistory.data){
+                  if(record.position == positionSelection){
+                      if(record.technique == techniqueSelection){
+                          recordsArray.push(record)
+                      }    
+                  }
+              }
+          }
+          
         }
-        
-        else if(positionSelection !== '' && techniqueSelection == ''){
-            for(let record of rollingHistory.data){
-                if(record.position == positionSelection){
-                    recordsArray.push(record)
-                }
-            }
-        }
-        else if(techniqueSelection !== '' && positionSelection == ''){
-            for(let record of rollingHistory.data){
-                if(record.technique == techniqueSelection){
-                    recordsArray.push(record)
-                }
-            }
-        }
-        else if(techniqueSelection !== '' && positionSelection !== ''){
-            for(let record of rollingHistory.data){
-                if(record.position == positionSelection){
-                    if(record.technique == techniqueSelection){
-                        recordsArray.push(record)
-                    }    
-                }
-            }
-        }
-        
-      }
-      catch(error){'RetrievefilteredRollRecords FAILED' + error}
-
-      return recordsArray
-    }
+        catch(error){'RetrievefilteredRollRecords FAILED' + error}
     
-    const retrieveFilteredDrillRecords = async(positionSelection, techniqueSelection)=>{
-        
-      const recordsArray = []
-      
-      try{
-      
-      
-        
-        const drillingHistory = await JSON.parse(await AsyncStorage.getItem('drillingHistory'))
-        
-        if(positionSelection == '' && techniqueSelection == ''){
-          for(let record of drillingHistory.data){
-            recordsArray.push(record)   
-          }
-        }
-        
-        else if(positionSelection !== '' && techniqueSelection == ''){
-            for(let record of drillingHistory.data){
-                if(record.position == positionSelection){
-                    recordsArray.push(record)
-                }
-            }
-        }
-        else if(techniqueSelection !== '' && positionSelection == ''){
-            for(let record of drillingHistory.data){
-                if(record.technique == techniqueSelection){
-                    recordsArray.push(record)
-                }
-            }
-        }
-        else if(techniqueSelection !== '' && positionSelection !== ''){
-            for(let record of drillingHistory.data){
-                if(record.position == positionSelection){
-                    if(record.technique == techniqueSelection){
-                        recordsArray.push(record)
-                    }
-                    
-                }
-            }
-        }
-        // console.log('retrieveFilteredDrillRecords contains: ', recordsArray)
-        
-
+        return recordsArray
       }
-      catch(error){'RetrievefilteredDrillRecords FAILED' + error}
-
-      return recordsArray
-    }
-
-    const retrieveFilteredExternalVideoRecords = async(positionSelection, techniqueSelection)=>{
+      
+      const retrieveFilteredDrillRecords = async(positionSelection, techniqueSelection)=>{
+          
+        const recordsArray = []
         
-      const recordsArray = []
-
-      try{
-        
-        const videoHistory = await JSON.parse(await AsyncStorage.getItem('videoHistory'))
+        try{
         
         
-        if(positionSelection == '' && techniqueSelection == ''){
-          for(let record of videoHistory.data){
-            recordsArray.push(record)   
+          
+          const drillingHistory = await JSON.parse(await AsyncStorage.getItem('drillingHistory'))
+          
+          if(positionSelection == '' && techniqueSelection == ''){
+            for(let record of drillingHistory.data){
+              recordsArray.push(record)   
+            }
           }
-        }
-        
-        else if(positionSelection !== '' && techniqueSelection == ''){
-            for(let record of videoHistory.data){
-                if(record.position == positionSelection){
-                    recordsArray.push(record)
-                }
-            }
-        }
-        else if(techniqueSelection !== '' && positionSelection == ''){
-            for(let record of videoHistory.data){
-                if(record.technique == techniqueSelection){
-                    recordsArray.push(record)
-                }
-            }
-        }
-        else if(techniqueSelection !== '' && positionSelection !== ''){
-            for(let record of videoHistory.data){
-                if(record.position == positionSelection){
-                    if(record.technique == techniqueSelection){
-                        recordsArray.push(record)
-                    }
-                    
-                }
-            }
-        }
-        // console.log('retrieveFilteredDrillRecords contains: ', recordsArray)
-        
-
-      }
-      catch(error){'RetrievefilteredVIDEORecords FAILED' + error}
-
-      return recordsArray
-    }
-
-
-
+          
+          else if(positionSelection !== '' && techniqueSelection == ''){
+              for(let record of drillingHistory.data){
+                  if(record.position == positionSelection){
+                      recordsArray.push(record)
+                  }
+              }
+          }
+          else if(techniqueSelection !== '' && positionSelection == ''){
+              for(let record of drillingHistory.data){
+                  if(record.technique == techniqueSelection){
+                      recordsArray.push(record)
+                  }
+              }
+          }
+          else if(techniqueSelection !== '' && positionSelection !== ''){
+              for(let record of drillingHistory.data){
+                  if(record.position == positionSelection){
+                      if(record.technique == techniqueSelection){
+                          recordsArray.push(record)
+                      }
+                      
+                  }
+              }
+          }
+          // console.log('retrieveFilteredDrillRecords contains: ', recordsArray)
+          
     
-    const retrieveFilteredLocalVideoRecords = async ()=>{return []}
-
-
-
+        }
+        catch(error){'RetrievefilteredDrillRecords FAILED' + error}
+    
+        return recordsArray
+      }
+    
+      const retrieveFilteredExternalVideoRecords = async(positionSelection, techniqueSelection)=>{
+          
+        const recordsArray = []
+    
+        try{
+          
+          const videoHistory = await JSON.parse(await AsyncStorage.getItem('videoHistory'))
+          
+          
+          if(positionSelection == '' && techniqueSelection == ''){
+            for(let record of videoHistory.data){
+              recordsArray.push(record)   
+            }
+          }
+          
+          else if(positionSelection !== '' && techniqueSelection == ''){
+              for(let record of videoHistory.data){
+                  if(record.position == positionSelection){
+                      recordsArray.push(record)
+                  }
+              }
+          }
+          else if(techniqueSelection !== '' && positionSelection == ''){
+              for(let record of videoHistory.data){
+                  if(record.technique == techniqueSelection){
+                      recordsArray.push(record)
+                  }
+              }
+          }
+          else if(techniqueSelection !== '' && positionSelection !== ''){
+              for(let record of videoHistory.data){
+                  if(record.position == positionSelection){
+                      if(record.technique == techniqueSelection){
+                          recordsArray.push(record)
+                      }
+                      
+                  }
+              }
+          }
+          // console.log('retrieveFilteredDrillRecords contains: ', recordsArray)
+          
+    
+        }
+        catch(error){'RetrievefilteredVIDEORecords FAILED' + error}
+    
+        return recordsArray
+      }
+    
+    
+    
+      
+      const retrieveFilteredLocalVideoRecords = async ()=>{return []}
+ 
     const FilteredRollRecords = await retrieveFilteredRollRecords(positionSelection, techniqueSelection)
     console.log('FilteredRollRecords:',  FilteredRollRecords)
     const FilteredDrillRecords = await retrieveFilteredDrillRecords(positionSelection, techniqueSelection)
