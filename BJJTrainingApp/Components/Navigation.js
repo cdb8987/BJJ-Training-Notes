@@ -1,4 +1,5 @@
-import { StyleSheet, View, Button, SafeAreaView } from 'react-native';
+import { StyleSheet, View, SafeAreaView } from 'react-native';
+import { Button } from 'react-native-paper';
 
 export default function Navbar(props){
    const {setDashboardVisible, setLogDrillingVisible, setLogRollingVisible, setstatsPageVisible, setVideoPageVisible} = props
@@ -7,33 +8,32 @@ export default function Navbar(props){
     <>
     <SafeAreaView >
     <View style={styles.container}>
-      {/* <View style={{flex: 1}}></View> */}
-      <Button style={styles.button}
-        title="DASHBOARD"  
-        // buttonColor="#f194ff"
+      <Button 
+        mode="outlined"
+        compact="true"
         onPress={(() => {setDashboardVisible(true), setLogDrillingVisible(false), setLogRollingVisible(false),console.log('Button with adjusted color pressed')})}
-      />
-      <Button style={styles.button}
-        title="STATS"  
-        // buttonColor="#f194ff"
+      >DASHBOARD</Button>
+      <Button  
+        mode="outlined" 
+        compact="true"
         onPress={(() => {setstatsPageVisible(true); setDashboardVisible(false), setLogDrillingVisible(false), setLogRollingVisible(false),console.log('Button with adjusted color pressed')})}
-      />
-      <Button style={styles.button}
-        title="DRILLS"  
-        // buttonColor="#f194ff"
+      >STATS</Button>
+      <Button   
+        mode="outlined" 
+        compact="true"
         onPress={(() => {setstatsPageVisible(false),setDashboardVisible(false), setLogDrillingVisible(true), setLogRollingVisible(false),console.log('Button with adjusted color pressed')})}
-      />
-      <Button style={styles.button}
-        title="ROLLS"  
-        // buttonColor="#f194ff"
+      >DRILLS</Button>
+      <Button   
+        mode="outlined" 
+        compact="true"
         onPress={(() => {setstatsPageVisible(false), setDashboardVisible(false), setLogDrillingVisible(false), setLogRollingVisible(true),console.log('Button with adjusted color pressed')})}
-      />
-      <Button style={styles.button}
-        title="VIDEOS"  
-        // buttonColor="#f194ff"
+      >ROLLS</Button>
+      <Button 
+        mode="outlined"  
+        compact="true" 
         onPress={(() => {setstatsPageVisible(false), setDashboardVisible(false), setLogDrillingVisible(false), setLogRollingVisible(false), setVideoPageVisible(true),console.log('Button with adjusted color pressed')})}
-      />
-       {/* <View style={{flex: 1}}></View> */}
+      >VIDEOS</Button>
+       
     </View>
     </SafeAreaView>
       
