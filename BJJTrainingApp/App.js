@@ -5,7 +5,6 @@ import Logdrilling from './Components/LogDrilling';
 import Logrolling from './Components/LogRolling' ;
 import Navbar from './Components/Navigation'
 import { useState, useEffect } from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import Statspage from './Components/StatsPage';
 import Logvideo from './Components/LogVideo';
 import { loadPositionsAndTechniques } from './Functions/functions'

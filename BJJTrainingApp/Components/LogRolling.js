@@ -1,7 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import ResponsiveDropdown2 from './ResponsiveDropdown2';
 import { StyleSheet, Text, View, Button, ImageBackground } from 'react-native';
-import React, { useState, useRef } from "react";
+import React from "react";
 import Notesinput from './NotesInput';
 
 
@@ -9,8 +9,6 @@ import Notesinput from './NotesInput';
 
      
   export default function Logrolling(props){
-    
-    // const image = {uri: 'https://static.wixstatic.com/media/d95d1e_ec6d2eaf578d42bcaffb9e6507ffcfde~mv2.png/v1/fill/w_178,h_178,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/Only%20Logo%20313031.pngS'};
     const image = require("../assets/Aegis_Clear_Logo.png")
     
     const result = [
@@ -58,7 +56,6 @@ import Notesinput from './NotesInput';
           console.log('rollingHistory undefined.  set to empty array.  ', initialData); await AsyncStorage.setItem('rollingHistory', initialData)
         }
         let storedData = await AsyncStorage.getItem('rollingHistory')
-        // console.log('STORED DATA IS:', storedData)
         return storedData
       }      
       const updateData = async (storedData)=>{
@@ -82,23 +79,11 @@ import Notesinput from './NotesInput';
       updateData(await getData())
       setLogRollingVisible(false)
       setLogRollingVisible(true)
-      
-
     }
-
-
-
-    return(
-        
-        
-     
-        
+    return(  
         <View style={styles.containerStyle}>
         <ImageBackground source={image} resizeMode="cover" style={styles.image} imageStyle= 
-        {{opacity:0.25}}> 
-          
-          
-          
+        {{opacity:0.25}}>  
           <View style={styles.DropdownContainerverticalpadding}>
           </View>
           <Text style={styles.header}>ROLLING</Text>
@@ -112,8 +97,6 @@ import Notesinput from './NotesInput';
           <View style={styles.notes}>
               <Notesinput updateNotes={updateRollNotes}/>
           </View>
-          
-    
           <Button style={styles.button}
             title="LOG ROLL"  
             onPress={(async () => {handleLogRoll()})}
@@ -123,10 +106,6 @@ import Notesinput from './NotesInput';
 
         </ImageBackground> 
         </View>
-        
- 
-        
-
     )
   }
   const styles = StyleSheet.create({

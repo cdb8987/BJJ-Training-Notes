@@ -1,12 +1,8 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import ResponsiveDropdown from './ResponsiveDropdown';
 import ResponsiveDropdown2 from './ResponsiveDropdown2';
 import { ImageBackground, StyleSheet, Text, View, Button } from 'react-native';
-import React, { useState } from "react";
+import React from "react";
 import Notesinput from './NotesInput';
-
-  
-
     const rounds = [
       {
         label: "# of ROUNDS",
@@ -39,38 +35,32 @@ import Notesinput from './NotesInput';
 
   export default function Logdrilling(props){
     const {techniques, positions, setLogDrillingVisible, isLoading}= props
-    const [text, setText] = useState('');
     const positionsObjectList = positions.map((x)=> {return {label: x, value: x }})
     const techniquesObjectList = techniques.map((x)=> {return {label: x, value: x }})
+
     positionsObjectList.unshift({label: 'POSITION', value: 'POSITION' })
     techniquesObjectList.unshift({label: 'TECHNIQUE', value: 'TECHNIQUE' })
-    // const image = {uri: 'https://static.wixstatic.com/media/d95d1e_ec6d2eaf578d42bcaffb9e6507ffcfde~mv2.png/v1/fill/w_178,h_178,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/Only%20Logo%20313031.pngS'};
+
     const image = require("../assets/Aegis_Clear_Logo.png")
 
-    // drill record contains position, technique and rounds
     let drillRecord = {};
+
+
     const updateDrillPositionSelection = function(positionChoice){
       drillRecord['position'] = positionChoice;
-      // console.log('Postion is:', drillRecord.position)
     }
     const updateDrillTechniqueSelection = function(techniqueChoice){
       drillRecord['technique'] = techniqueChoice
-      // console.log('Technique in drillrecord is:', drillRecord.technique)
-      // console.log('Techniques overall is:', techniques)
     }
     const updateDrillRoundsSelection = function(roundsChoice){
       drillRecord['rounds'] = roundsChoice
-      // console.log('Rounds in drillrecord is is:', drillRecord.rounds)
-      // console.log('Rounds overall is:', rounds)
     }
 
-    const updateRollNotes = (notes)=>{
+    const updateDrillNotes = (notes)=>{
       drillRecord['notes'] = notes;
-      // console.log(drillRecord)
     }
 
-    const handleLogDrill = async (notes) => {
-      // console.log('Here is the drill Record:', drillRecord)
+    const handleLogDrill = async () => {
       let drillingHistory;
       
       const getData = async ()=>{
@@ -79,7 +69,6 @@ import Notesinput from './NotesInput';
           console.log('drillingHistory undefined.  set to empty array.  ', initialData); await AsyncStorage.setItem('drillingHistory', initialData)
         }
         let storedData = await AsyncStorage.getItem('drillingHistory')
-        // console.log('STORED DATA IS:', storedData)
         return storedData
       }      
       const updateData = async (storedData)=>{
@@ -113,11 +102,6 @@ import Notesinput from './NotesInput';
         <View style={styles.containerStyle}>
         <ImageBackground source={image} resizeMode="cover" style={styles.image} imageStyle= 
         {{opacity:0.25}}>
-      
-    
-
-            
-            
             <View style={styles.DropdownContainerverticalpadding}>
             </View>
             <Text style={styles.header}>DRILLING</Text>
@@ -131,7 +115,7 @@ import Notesinput from './NotesInput';
             
             
             <View style={styles.notes}>
-              <Notesinput updateNotes={updateRollNotes}/>
+              <Notesinput updateNotes={updateDrillNotes}/>
             </View>
             
             
@@ -143,16 +127,7 @@ import Notesinput from './NotesInput';
               // buttonColor="#f194ff"
               onPress={(async () => {handleLogDrill('test')})}
               />
-              <View style={styles.DropdownContainerverticalpadding}></View>
-            
-
-              {/* <Button style={styles.button}
-              title="SEE DRILLS" 
-              onPress={async () => {const currentDrill = await AsyncStorage.getItem('currentDrill'); console.log(`DrillRecord ${currentDrill} has been stored asychronously`) }}
-              /> */}
-            
-            
-            
+              <View style={styles.DropdownContainerverticalpadding}></View>   
         </ImageBackground>    
         </View>
         

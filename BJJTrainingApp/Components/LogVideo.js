@@ -1,18 +1,12 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import Dropdown from './ResponsiveDropdown';
 import ResponsiveDropdown2 from './ResponsiveDropdown2';
-import { StyleSheet, Text, View,  Button, ImageBackground, SafeAreaView, Alert } from 'react-native';
-import React, { useState, useRef } from "react";
+import { StyleSheet, Text, View,  Button, ImageBackground} from 'react-native';
+import React from "react";
 import Notesinput from './NotesInput';
 import EnterURLInputbox from './EnterUrlInputBox'
-
-
-
-//MAKE SURE TO ADD DATA VALIDATION TO THE URL INPUT!!!
-     
-  export default function Logvideo(props){
+ 
+export default function Logvideo(props){
     
-    // const image = {uri: 'https://static.wixstatic.com/media/d95d1e_ec6d2eaf578d42bcaffb9e6507ffcfde~mv2.png/v1/fill/w_178,h_178,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/Only%20Logo%20313031.pngS'};
     const image = require("../assets/Aegis_Clear_Logo.png")
     
     
@@ -56,10 +50,6 @@ import EnterURLInputbox from './EnterUrlInputBox'
         return storedData
       }      
       const updateData = async (storedData)=>{
-        
-        
-        
-        
         if(!videoRecord.url){return null}
         videoHistory= await JSON.parse(storedData)
         const d = new Date()
@@ -71,16 +61,13 @@ import EnterURLInputbox from './EnterUrlInputBox'
             videoRecord[i]=''
           }
         }
-        
-        
         let validLink = false
         try{
           const response = await fetch(videoRecord.url)
           if(response.status == 200){validLink = true}
         }
         catch(error){alert('The link you entered appears to be broken.  Please check your entry and try again.')}
-        
-        
+  
         if(validLink){
           videoHistory.data.push(videoRecord)
           console.log('VIDEO RECORD IN VOLATILE MEMORY', videoHistory)
@@ -88,69 +75,28 @@ import EnterURLInputbox from './EnterUrlInputBox'
           setVideoPageVisible(false)
           setVideoPageVisible(true)
         }
-        
-        
-        
-        
-
-        
-          
-          
-        
-        
-        
-        
-
-        
       }
-
-//
-
-
-
-
-
-
       updateData(await getData())
       setVideoPageVisible(false)
       setVideoPageVisible(true) // we just want to rerender component to clear dropdowns and notes
-      
-
     }
-
-
-
-    return(
-        
-        
-     
-        
+    return(       
         <View style={styles.containerStyle}>
         <ImageBackground source={image} resizeMode="cover" style={styles.image} imageStyle= 
         {{opacity:0.25}}> 
-          
-          
-          
           <View style={styles.DropdownContainerverticalpadding}>
           </View>
           <Text style={styles.header}>VIDEOS</Text>
-          <View style={styles.DropdownsContainer}>            
-            
-            
+          <View style={styles.DropdownsContainer}>                       
             <ResponsiveDropdown2 style={styles.dropdown}listOptions={positionsObjectList} dropdownLabel={'ENDING POSITION'} updateSelection={updateVideoPositionSelection}/>
-            <ResponsiveDropdown2 style={styles.dropdown} listOptions={techniquesObjectList} dropdownLabel={'SUBMISSION'} updateSelection={updateVideoTechniqueSelection}/>
-            
+            <ResponsiveDropdown2 style={styles.dropdown} listOptions={techniquesObjectList} dropdownLabel={'SUBMISSION'} updateSelection={updateVideoTechniqueSelection}/>           
           </View>
           <View id={'DropdownContainerverticalpadding'} style={styles.DropdownContainerverticalpadding}>
           <EnterURLInputbox style={styles.notes} updateVideoURL={updateVideoURL}/>
-          </View>
-          
+          </View>        
           <View style={styles.notes}>
-            
             <Notesinput updateNotes={updateVideoNotes}/>
           </View>
-          
-    
           <Button style={styles.button}
             title="LOG VIDEO"  
             onPress={(async () => {handleLogVideo()})}
@@ -160,10 +106,6 @@ import EnterURLInputbox from './EnterUrlInputBox'
 
         </ImageBackground> 
         </View>
-        
- 
-        
-
     )
   }
   const styles = StyleSheet.create({
@@ -172,7 +114,6 @@ import EnterURLInputbox from './EnterUrlInputBox'
       flex: 1,
       // backgroundColor: '#19c37d',
       backgroundColor: 'white',
-     
     },
     image: {
       flex: 1,

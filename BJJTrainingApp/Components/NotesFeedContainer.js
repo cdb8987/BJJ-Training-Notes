@@ -1,14 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage"
 
 
-
-
-
-// import Drillrecord from "./DrillRecord"
-// import ExternalVideorecord from "./ExternalVideoRecord"
-// import LocalVideorecord from "./LocalVideoRecord"
-
-
 export default function NotesFeedcontainer(props){
     //inside NotesFeedContainer, we will retrieve all the filtered records.  We will then pass them as a prop to NotesFeed where they will be rendered
     const {positionSelection, techniqueSelection, FilteredRecords, setFilteredRecords} = props
