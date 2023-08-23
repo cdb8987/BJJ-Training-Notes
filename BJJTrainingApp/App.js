@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, SafeAreaView} from 'react-native';
+import { StatusBar as ExpoStatusBar } from 'expo-status-bar';
+import { StyleSheet, SafeAreaView, Platform, StatusBar} from 'react-native';
 import DashBoard from './Components/Dashboard';
 import Logdrilling from './Components/LogDrilling';
 import Logrolling from './Components/LogRolling' ;
@@ -12,7 +13,8 @@ import {startingPositions, startingTechniques } from './Functions/functions'
 
 // gh issue create --title "Blank" --body "Blank " --label 'enhancement'
 
-
+console.log(StatusBar.currentHeight)
+const isAndroid = Platform.OS == 'Android'
 export default function App() {
   
   
@@ -58,7 +60,8 @@ export default function App() {
       flex: 1, 
       width: "100%",
       alignItems: "center",
-      justifyContent: "center"
+      justifyContent: "center",
+      paddingTop: isAndroid? StatusBar.currentHeight : 0
     }
   })
       
