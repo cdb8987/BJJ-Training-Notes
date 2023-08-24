@@ -7,8 +7,7 @@ import EditPositionCellmenu from './EditPositionCellMenu.js';
 import EditTechniqueCellmenu from './EditTechniqueCellMenu.js';
 import { aggregateFilteredRecords } from '../Functions/functions'
 
-export default  function DashBoard(props){
-  const {techniques, positions, setPositions, setTechniques } = props
+export default  function DashBoard({techniques, positions, setPositions, setTechniques }){
 
   const [positionSelection, setPositionSelection] = useState('')
   const [techniqueSelection, setTechniqueSelection] = useState('')
