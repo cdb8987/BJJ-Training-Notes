@@ -95,6 +95,7 @@ export default function Logvideo(props){
           <View id={'DropdownContainerverticalpadding'} style={styles.DropdownContainerverticalpadding}>
           <EnterURLInputbox style={styles.notes} updateVideoURL={updateVideoURL}/>
           </View>        
+          <KeyboardAwareScrollView >
           <View style={styles.notes}>
             <Notesinput updateNotes={updateVideoNotes}/>
           </View>
@@ -104,7 +105,7 @@ export default function Logvideo(props){
             />
           <View style={styles.DropdownContainerverticalpadding}>
           </View>
-
+          </KeyboardAwareScrollView>
         </ImageBackground> 
         </View>
     )

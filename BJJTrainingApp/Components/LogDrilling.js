@@ -101,10 +101,8 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
         
        
         <View style={styles.containerStyle} >
-        
         <ImageBackground source={image} resizeMode="cover" style={styles.image} imageStyle= 
         {{opacity:0.25}}>
-          {/* <KeyboardAwareScrollView > */}
             <View style={styles.DropdownContainerverticalpadding}>
             </View>
             <Text style={styles.header}>DRILLING</Text>
@@ -116,7 +114,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
             <View style={styles.DropdownContainerverticalpadding}>
             </View>
             
-            
+            <KeyboardAwareScrollView >
             <View style={styles.notes}>
               <Notesinput updateNotes={updateDrillNotes}/>
             </View>
@@ -131,7 +129,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
               onPress={(async () => {handleLogDrill('test')})}
               />
               <View style={styles.DropdownContainerverticalpadding}></View>   
-          {/* </KeyboardAwareScrollView> */}
+            </KeyboardAwareScrollView>
         </ImageBackground>    
         </View>
         

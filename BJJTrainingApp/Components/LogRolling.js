@@ -95,6 +95,8 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
           </View>
           <View id={'DropdownContainerverticalpadding'} style={styles.DropdownContainerverticalpadding}>
           </View>
+
+          <KeyboardAwareScrollView >
           <View style={styles.notes}>
               <Notesinput updateNotes={updateRollNotes}/>
           </View>
@@ -104,6 +106,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
             />
           <View style={styles.DropdownContainerverticalpadding}>
           </View>
+          </KeyboardAwareScrollView>
 
         </ImageBackground> 
         </View>
