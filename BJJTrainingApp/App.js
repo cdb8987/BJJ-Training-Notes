@@ -1,6 +1,6 @@
 import React from 'react';
 // import { StatusBar as ExpoStatusBar } from 'expo-status-bar';
-import { StyleSheet, SafeAreaView, Platform, StatusBar} from 'react-native';
+import { StyleSheet, SafeAreaView, Platform, StatusBar, View} from 'react-native';
 import DashBoard from './Components/Dashboard';
 import Logdrilling from './Components/LogDrilling';
 import Logrolling from './Components/LogRolling' ;
@@ -13,6 +13,7 @@ import {startingPositions, startingTechniques } from './Functions/functions'
 
 // gh issue create --title "Blank" --body "Blank " --label 'enhancement'
 export const AndroidContext = createContext()
+export const backGroundImage = createContext()
 const isAndroid = Platform.OS == 'android'  
  
 
