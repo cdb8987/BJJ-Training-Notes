@@ -1,9 +1,15 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import ResponsiveDropdown2 from './ResponsiveDropdown2';
-import { ImageBackground, StyleSheet, Text, View, Button } from 'react-native';
+import { ImageBackground, StyleSheet, Text, View, Button, StatusBar, SafeAreaView } from 'react-native';
 import React from "react";
 import Notesinput from './NotesInput';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import { useContext } from 'react'
+import { AndroidContext } from '../App.js'
+
+
+
+
     const rounds = [
       {
         label: "# of ROUNDS",
@@ -35,6 +41,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
   
 
   export default function Logdrilling(props){
+    const isAndroid = useContext(AndroidContext)
     const {techniques, positions, setLogDrillingVisible}= props
     const positionsObjectList = positions.map((x)=> {return {label: x, value: x }})
     const techniquesObjectList = techniques.map((x)=> {return {label: x, value: x }})
@@ -99,7 +106,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 
     return(
         
-       
+        <SafeAreaView style={{flex:1, paddingTop: isAndroid? StatusBar.currentHeight : 0}}>
         <View style={styles.containerStyle} >
         <ImageBackground source={image} resizeMode="cover" style={styles.image} imageStyle= 
         {{opacity:0.25}}>
@@ -132,7 +139,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
             </KeyboardAwareScrollView>
         </ImageBackground>    
         </View>
-        
+        </SafeAreaView>
         
 
     )
@@ -143,6 +150,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
       flex: 1,
       // backgroundColor: '#19c37d',
       backgroundColor: 'white',
+      
      
     },
     spacerStyle: {

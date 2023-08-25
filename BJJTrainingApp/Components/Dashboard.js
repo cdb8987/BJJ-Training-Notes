@@ -1,14 +1,20 @@
 import React from 'react'
-import { ImageBackground, StyleSheet, Text, View, ScrollView } from 'react-native';
+import { ImageBackground, StyleSheet, Text, View, ScrollView, StatusBar } from 'react-native';
 import Datatable from './DataTable.js';
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useContext} from 'react';
 import { Divider } from 'react-native-paper'
 import EditPositionCellmenu from './EditPositionCellMenu.js';
 import EditTechniqueCellmenu from './EditTechniqueCellMenu.js';
 import { aggregateFilteredRecords } from '../Functions/functions'
+import { AndroidContext } from '../App.js'
+import { SafeAreaView } from 'react-native';
+
+
+
 
 export default  function DashBoard({techniques, positions, setPositions, setTechniques }){
-
+  const isAndroid = useContext(AndroidContext)
+  console.log('isAndroid inside Dashboard: ', {isAndroid})
   const [positionSelection, setPositionSelection] = useState('')
   const [techniqueSelection, setTechniqueSelection] = useState('')
   const [FilteredRecords, setFilteredRecords] = useState([])
@@ -46,6 +52,8 @@ export default  function DashBoard({techniques, positions, setPositions, setTech
     }, [])
 
   return(
+      
+      <SafeAreaView style={{flex:1, paddingTop: isAndroid? StatusBar.currentHeight : 0}}>
       <View style={styles.container}>
         <ImageBackground source={image} resizeMode="cover" style={styles.image} imageStyle={{opacity:0.25}}>
           <View style={styles.DataTableContainer}>
@@ -61,6 +69,7 @@ export default  function DashBoard({techniques, positions, setPositions, setTech
           {bottomContainer}
         </ImageBackground>
       </View>
+      </SafeAreaView>
       
     )
 }
@@ -70,7 +79,8 @@ const styles = StyleSheet.create({
     width: "100%",
     flex: 1,
     // backgroundColor: '#19c37d',
-    backgroundColor: 'white',
+    backgroundColor: 'white'
+    
   },
     image: {
       flex: 1,
@@ -79,8 +89,8 @@ const styles = StyleSheet.create({
     TrainingPlanheader: {
         fontSize: 25,
         fontWeight: 'bold', 
-        padding: 15,
-        marginTop: 30
+        // padding: 15,
+        // marginTop: 30
     },
     Notesheader: {
       fontSize: 25,

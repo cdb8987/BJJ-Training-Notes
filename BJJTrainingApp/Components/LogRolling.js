@@ -1,15 +1,21 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import ResponsiveDropdown2 from './ResponsiveDropdown2';
-import { StyleSheet, Text, View, Button, ImageBackground } from 'react-native';
+import { StyleSheet, Text, View, Button, ImageBackground, StatusBar, SafeAreaView } from 'react-native';
 import React from "react";
 import Notesinput from './NotesInput';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import { useContext } from 'react'
+import { AndroidContext } from '../App.js'
+
+
+
 
 
 
 
      
   export default function Logrolling(props){
+    const isAndroid = useContext(AndroidContext)
     const image = require("../assets/Aegis_Clear_Logo.png")
     
     const result = [
@@ -82,6 +88,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
       setLogRollingVisible(true)
     }
     return(  
+        <SafeAreaView style={{flex:1, paddingTop: isAndroid? StatusBar.currentHeight : 0}}>
         <View style={styles.containerStyle}>
         <ImageBackground source={image} resizeMode="cover" style={styles.image} imageStyle= 
         {{opacity:0.25}}>  
@@ -110,6 +117,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 
         </ImageBackground> 
         </View>
+        </SafeAreaView>
     )
   }
   const styles = StyleSheet.create({
@@ -118,6 +126,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
       flex: 1,
       // backgroundColor: '#19c37d',
       backgroundColor: 'white',
+      
      
     },
     image: {

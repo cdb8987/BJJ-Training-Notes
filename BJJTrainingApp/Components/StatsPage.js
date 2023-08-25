@@ -1,12 +1,15 @@
 import React from 'react'
-import { ImageBackground, StyleSheet, Text, View, Image, ScrollView } from 'react-native';
-import {Dimensions} from 'react-native';
+import { ImageBackground, StyleSheet, Text, View, Image, ScrollView, SafeAreaView, StatusBar } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Piechart from './PieChart.js';
+import { useContext } from 'react'
+import { AndroidContext } from '../App.js'
+
 
 
 
 export default function Statspage(props){
+    const isAndroid = useContext(AndroidContext)
     const {techniques, positions} = props
     
 
@@ -119,6 +122,7 @@ export default function Statspage(props){
 
 
     return (
+    <SafeAreaView style={{flex:1, paddingTop: isAndroid? StatusBar.currentHeight : 0}}>
     <ImageBackground source={image} resizeMode="cover" style={styles.image} imageStyle={{opacity:0.25}}>
         <ScrollView>
         <View><Text style={styles.Historyheader}>Stats</Text></View>
@@ -136,6 +140,7 @@ export default function Statspage(props){
 
         </ScrollView>
     </ImageBackground>
+    </SafeAreaView>
     )
 
 }
@@ -146,7 +151,8 @@ const styles = StyleSheet.create({
       // backgroundColor: '#19c37d',
       backgroundColor: 'white',
       alignItems: 'center',
-      justifyContent: 'center'
+      justifyContent: 'center', 
+      
       
     },
     image: {

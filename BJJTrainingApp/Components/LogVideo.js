@@ -1,12 +1,19 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import ResponsiveDropdown2 from './ResponsiveDropdown2';
-import { StyleSheet, Text, View,  Button, ImageBackground} from 'react-native';
+import { StyleSheet, Text, View,  Button, ImageBackground, StatusBar, SafeAreaView} from 'react-native';
 import React from "react";
 import Notesinput from './NotesInput';
 import EnterURLInputbox from './EnterUrlInputBox'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import { useContext } from 'react'
+import { AndroidContext } from '../App.js'
+
+
+
+
  
 export default function Logvideo(props){
+  const isAndroid = useContext(AndroidContext)
     
     const image = require("../assets/Aegis_Clear_Logo.png")
     
@@ -82,6 +89,8 @@ export default function Logvideo(props){
       setVideoPageVisible(true) // we just want to rerender component to clear dropdowns and notes
     }
     return(       
+        
+        <SafeAreaView style={{flex:1, paddingTop: isAndroid? StatusBar.currentHeight : 0}}>
         <View style={styles.containerStyle}>
         <ImageBackground source={image} resizeMode="cover" style={styles.image} imageStyle= 
         {{opacity:0.25}}> 
@@ -108,6 +117,7 @@ export default function Logvideo(props){
           </KeyboardAwareScrollView>
         </ImageBackground> 
         </View>
+        </SafeAreaView>
     )
   }
   const styles = StyleSheet.create({
@@ -116,6 +126,7 @@ export default function Logvideo(props){
       flex: 1,
       // backgroundColor: '#19c37d',
       backgroundColor: 'white',
+      
     },
     image: {
       flex: 1,

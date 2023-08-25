@@ -1,23 +1,23 @@
 import React from 'react';
-import { StatusBar as ExpoStatusBar } from 'expo-status-bar';
+// import { StatusBar as ExpoStatusBar } from 'expo-status-bar';
 import { StyleSheet, SafeAreaView, Platform, StatusBar} from 'react-native';
 import DashBoard from './Components/Dashboard';
 import Logdrilling from './Components/LogDrilling';
 import Logrolling from './Components/LogRolling' ;
 import Navbar from './Components/Navigation'
-import { useState, useEffect } from 'react';
+import { useState, useEffect, createContext } from 'react';
 import Statspage from './Components/StatsPage';
 import Logvideo from './Components/LogVideo';
 import { loadPositionsAndTechniques } from './Functions/functions'
 import {startingPositions, startingTechniques } from './Functions/functions'
 
 // gh issue create --title "Blank" --body "Blank " --label 'enhancement'
+export const AndroidContext = createContext()
+const isAndroid = Platform.OS == 'android'  
+ 
 
-console.log(StatusBar.currentHeight)
-const isAndroid = Platform.OS == 'Android'
+
 export default function App() {
-  
-  
   useEffect(()=>{
     async function getData(){
       const res = await loadPositionsAndTechniques(setPositions, setTechniques)
@@ -34,7 +34,7 @@ export default function App() {
   const [logRollingVisible, setLogRollingVisible] = useState(false)
   const [statsPageVisible, setstatsPageVisible] = useState(false)
   const [videoPageVisible, setVideoPageVisible] = useState(false)
-  const [isLoading, setIsLoading] = useState(true)
+  // const [isLoading, setIsLoading] = useState(true)
   
   
   //   Selects screen
@@ -47,10 +47,12 @@ export default function App() {
 
   // console.log(selectedScreen)
   return (  
-    <SafeAreaView style={styles.container}>
-     {selectedScreen}
-     <Navbar setDashboardVisible={setDashboardVisible} setLogDrillingVisible={setLogDrillingVisible} setLogRollingVisible={setLogRollingVisible} setstatsPageVisible={setstatsPageVisible} setVideoPageVisible={setVideoPageVisible}/>
-    </SafeAreaView>
+    <AndroidContext.Provider value={isAndroid}>
+      <SafeAreaView style={styles.container}>
+      {selectedScreen}
+      <Navbar setDashboardVisible={setDashboardVisible} setLogDrillingVisible={setLogDrillingVisible} setLogRollingVisible={setLogRollingVisible} setstatsPageVisible={setstatsPageVisible} setVideoPageVisible={setVideoPageVisible}/>
+      </SafeAreaView>
+    </AndroidContext.Provider>
   )
   }
   const styles= StyleSheet.create({
@@ -58,9 +60,9 @@ export default function App() {
     
     container:{
       flex: 1, 
-      width: "100%",
-      alignItems: "center",
-      justifyContent: "center",
+      // width: "100%",
+      // alignItems: "center",
+      // justifyContent: "center",
       paddingTop: isAndroid? StatusBar.currentHeight : 0
     }
   })
