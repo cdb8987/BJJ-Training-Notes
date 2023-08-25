@@ -1,7 +1,7 @@
 import { Text, View, Linking } from 'react-native';
 
 
-
+import React from 'react';
 import Emoji from 'react-native-emoji';
 
 export default function ExternalVideoRecordandroid(props){

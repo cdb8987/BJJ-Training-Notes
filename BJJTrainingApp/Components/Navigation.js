@@ -1,5 +1,6 @@
 import { StyleSheet, View, SafeAreaView } from 'react-native';
 import { Button } from 'react-native-paper';
+import React from 'react';
 
 export default function Navbar(props){
    const {setDashboardVisible, setLogDrillingVisible, setLogRollingVisible, setstatsPageVisible, setVideoPageVisible} = props

@@ -2,6 +2,7 @@ import { PieChart } from 'react-native-chart-kit';
 import { Dimensions } from 'react-native';
 import { StyleSheet, Text, View } from 'react-native';
 import { useState, useEffect } from 'react';
+import React from 'react';
 //
 export default function Piechart (props){
     

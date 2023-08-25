@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Text, View, Button, TextInput, TouchableOpacity } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import React from 'react';
 
 
 export default function EditTechniqueCellmenu(props){

@@ -4,6 +4,7 @@ import { StyleSheet, Text, View,  Button, ImageBackground} from 'react-native';
 import React from "react";
 import Notesinput from './NotesInput';
 import EnterURLInputbox from './EnterUrlInputBox'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
  
 export default function Logvideo(props){
     

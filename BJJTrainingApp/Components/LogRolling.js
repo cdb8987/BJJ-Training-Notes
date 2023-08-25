@@ -3,6 +3,7 @@ import ResponsiveDropdown2 from './ResponsiveDropdown2';
 import { StyleSheet, Text, View, Button, ImageBackground } from 'react-native';
 import React from "react";
 import Notesinput from './NotesInput';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 
 

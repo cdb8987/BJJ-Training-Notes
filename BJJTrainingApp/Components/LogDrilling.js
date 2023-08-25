@@ -3,6 +3,7 @@ import ResponsiveDropdown2 from './ResponsiveDropdown2';
 import { ImageBackground, StyleSheet, Text, View, Button } from 'react-native';
 import React from "react";
 import Notesinput from './NotesInput';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
     const rounds = [
       {
         label: "# of ROUNDS",
@@ -99,9 +100,11 @@ import Notesinput from './NotesInput';
     return(
         
        
-        <View style={styles.containerStyle}>
+        <View style={styles.containerStyle} >
+        
         <ImageBackground source={image} resizeMode="cover" style={styles.image} imageStyle= 
         {{opacity:0.25}}>
+          {/* <KeyboardAwareScrollView > */}
             <View style={styles.DropdownContainerverticalpadding}>
             </View>
             <Text style={styles.header}>DRILLING</Text>
@@ -128,6 +131,7 @@ import Notesinput from './NotesInput';
               onPress={(async () => {handleLogDrill('test')})}
               />
               <View style={styles.DropdownContainerverticalpadding}></View>   
+          {/* </KeyboardAwareScrollView> */}
         </ImageBackground>    
         </View>
         

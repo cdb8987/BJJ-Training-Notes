@@ -2,6 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import Rollrecord from '../Components/RollRecord.js';
 import Drillrecord from '../Components/DrillRecord.js';
 import ExternalVideoRecordandroid from '../Components/ExternalVideoRecordAndroid.js';
+import React from 'react';
 
 export let startingPositions = ["Guard", "Side Control", "Mount", "Back Control"]
 export let startingTechniques = ['Armbar', 'Kimura', 'Lapel Choke', 'Triangle Choke', 'Americana', 'Head and Arm Choke', 'Rear Naked Choke', 'Escape', 'Sweep']
