@@ -8,11 +8,11 @@ export default function Notesinput(props){
     updateNotes(text)
     return (
         <TextInput
-            style={{height: 40, flex: 1}}
+            style={{height: 120, flex: 1}}
             placeholder="Enter Notes Here"
             onChangeText={(newText) => {setText(newText)}}
             defaultValue={text}
-            // multiline={true}
+            multiline={true}
 
 
         />
